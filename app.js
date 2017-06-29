@@ -1,10 +1,12 @@
-const restify = require('restify')
-var controllers = require('./application/init')
+const express = require('express')
 
-var server = restify.createServer()
+var controllers = require('./application/init')
+var config = require('./application/config/config')
+
+var server = express()
 
 controllers.start(server)
 
-server.listen(3000, function() {
-  console.log('%s listening at %s', server.name, server.url)
+server.listen(config.PORT, () => {
+  console.log(`${server.name} listening at port ${config.PORT}`)
 })

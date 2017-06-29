@@ -3,16 +3,17 @@ const path = require('path')
 
 module.exports.start = function (server) {
 
-  var currentPath = path.resolve(__dirname + '/controllers')
+  var currentPath = path.resolve(`${__dirname}/api/controllers`)
 
   var controllers = fs.readdirSync(currentPath)
 
   controllers.forEach(item => {
 
-    var controllerPath = path.join(currentPath, item).replace(/\\/g, '/')
+    var basename = path.basename(item, '.js').replace('Controller', '')
 
-    var controller = require(controllerPath)
+    var controller = require(`./controllers/${item}`)
 
-    controller.init(server);
+    server.use(`/${basename}`, controller)
+
   })
 }
