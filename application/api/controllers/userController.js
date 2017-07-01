@@ -1,10 +1,15 @@
-const express = require('express');
+const express = require('express')
+const UserRepository = require('./../../data/userRepository')
+const UserService = require('./../../business/userService')
 
-var router = express.Router();
+var router = express.Router()
 
 router.get('/', (req, res) => {
 
-    var data = [{ name: 'John' }, { name: 'Paul' }, { name: 'George' }, { name: 'Ringo' }]
+    var ur = new UserRepository()
+    var us = new UserService(ur)
+
+    var data = us.get()
 
     res.send(data)
 

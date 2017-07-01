@@ -11,7 +11,7 @@ module.exports.start = function (server) {
 
     var basename = path.basename(item, '.js').replace('Controller', '')
 
-    var controller = require(`./controllers/${item}`)
+    var controller = require(`./api/controllers/${item}`)
 
     server.use(`/${basename}`, controller)
 
