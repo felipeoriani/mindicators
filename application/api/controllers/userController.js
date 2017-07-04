@@ -1,15 +1,13 @@
 const express = require('express')
-const UserRepository = require('./../../data/userRepository')
-const UserService = require('./../../business/userService')
+const ioc = global.ioc;
 
 var router = express.Router()
 
 router.get('/', (req, res) => {
 
-    var ur = new UserRepository()
-    var us = new UserService(ur)
-
-    var data = us.get()
+    var userService = ioc.get('userService');
+    
+    var data = userService.get()
 
     res.send(data)
 

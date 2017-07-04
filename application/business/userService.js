@@ -1,5 +1,5 @@
 module.exports = class UserService {
-    constructor(userRepository) {
+    constructor({userRepository}) {
         this.userRepository = userRepository
     }
     
