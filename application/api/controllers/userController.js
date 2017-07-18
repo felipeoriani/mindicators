@@ -1,16 +1,19 @@
 const express = require('express')
-const ioc = global.ioc;
 
 var router = express.Router()
 
 router.get('/', (req, res) => {
 
-    var userService = ioc.get('userService');
+    var userService = global.ioc.get('userService')
     
-    var data = userService.get()
+    userService.get()
+                .then(users => {
+                    res.send(users)
+                })
+                .catch(err => {
+                    res.status(400).send(err)
+                })
 
-    res.send(data)
-
-});
+})
 
 module.exports = router

@@ -19,6 +19,8 @@
   "homepage": "https://github.com/felipeoriani/mindicators#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "sequelize": "^4.3.2",
+    "tedious": "^2.0.0"
   }
 }
