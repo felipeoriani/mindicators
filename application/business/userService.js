@@ -6,4 +6,5 @@ module.exports = class UserService {
     get() {
         return this.userRepository.get()
     }
+
 }

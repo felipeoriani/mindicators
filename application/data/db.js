@@ -1,4 +1,3 @@
-
 const fs = require("fs")
 const path = require("path")
 
@@ -13,14 +12,14 @@ var sequelize = new Sequelize('mindicators', 'sa', 'toor', {
     idle: 10000
   }
 })
-
+/*
 sequelize.authenticate()
          .then(() => {
              console.log('Connection has been established successfully.')
          }).catch(err => {
              console.log('Unable to connect on the database. Error: ', err)
              throw err
-         })
+         })*/
 
 var db = {}
 

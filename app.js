@@ -10,12 +10,13 @@ var server = express()
 
 server.use(bodyParser.json())
 
-var ioc = new Container();
+var ioc = new Container()
+
+ioc.bind('db', db)
 
 controllers.start(server, ioc)
 
 global.ioc = ioc
-global.db = db
 
 server.listen(config.PORT, () => {
   console.log(`${server.name} listening at port ${config.PORT}`)

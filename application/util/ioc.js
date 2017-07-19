@@ -18,6 +18,10 @@ var inversionOfControl = class InversionOfControl {
     }
     get(name) {
         var objectType = this.modules[name]
+
+        if (typeof objectType === 'object')
+            return objectType;
+
         return new objectType(this.paramParser)
     }
     bind(name, module) {

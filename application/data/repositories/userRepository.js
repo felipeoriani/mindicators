@@ -1,10 +1,14 @@
 module.exports = class UserRepository {
 
+    constructor({db}) {
+        this.db = db;
+    }
+
     get() {
-        return global.db.User.findAll()
+        return this.db.User.findAll()
     }
 
     add(user) {
-        return global.db.User.create(user);
+        return this.db.User.create(user);
     }
 }
