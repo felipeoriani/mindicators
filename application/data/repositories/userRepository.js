@@ -1,14 +1,8 @@
-module.exports = class UserRepository {
+var BaseRepository = require('../baseRepository');
+
+module.exports = class UserRepository extends BaseRepository {
 
     constructor({db}) {
-        this.db = db;
-    }
-
-    get() {
-        return this.db.User.findAll()
-    }
-
-    add(user) {
-        return this.db.User.create(user);
+        super(db, 'User')
     }
 }

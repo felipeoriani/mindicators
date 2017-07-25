@@ -7,16 +7,13 @@ var config = require('./application/config')
 var db = require('./application/data/db')
 
 var server = express()
-
 server.use(bodyParser.json())
 
 var ioc = new Container()
-
 ioc.bind('db', db)
+global.ioc = ioc
 
 controllers.start(server, ioc)
-
-global.ioc = ioc
 
 server.listen(config.PORT, () => {
   console.log(`${server.name} listening at port ${config.PORT}`)

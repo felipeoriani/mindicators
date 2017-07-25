@@ -15,7 +15,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     groupId: {
       field: 'GroupId',
-      type: DataTypes.BIGINT.UNSIGNED,
+      type: DataTypes.BIGINT,
       allowNull: true
     }
   }, {

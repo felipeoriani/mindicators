@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
 
     var groupService = global.ioc.get('groupService')
     
-    groupService.get()
+    groupService.getAll()
                 .then(groups => {
                     res.send(groups)
                 })
@@ -32,14 +32,13 @@ router.post('/', (req, res) => {
     
     var groupService = global.ioc.get('groupService')
     
-    groupService.create(req.body)
+    groupService.save(req.body)
                 .then(group => {
                     res.send(group)
                 })
                 .catch(err => {
-                    res.status(400).send(err)
+                    res.status(400).send(err.validation)
                 })
 })
-
 
 module.exports = router
