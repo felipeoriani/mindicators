@@ -37,7 +37,14 @@ router.post('/', (req, res) => {
                     res.send(group)
                 })
                 .catch(err => {
-                    res.status(400).send(err.validation)
+
+                    if (err && err.validation) {
+                        res.status(400).send(err)
+                        return
+                    }
+
+                    res.status(500).send(err)
+
                 })
 })
 

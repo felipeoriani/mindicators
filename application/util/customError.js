@@ -4,7 +4,7 @@ module.exports = class BusinessError extends Error {
         this.validation = validation
     }
 
-    toJson() {
-        return Jthis.validation
+    toJSON() {
+        return this.validation
     }    
 }

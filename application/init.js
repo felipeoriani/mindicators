@@ -44,7 +44,29 @@ var initContainer = function (container) {
   })
 }
 
+var init = function() {
+
+  // define serialization for Errors
+  if (!('toJSON' in Error.prototype)) {
+    Object.defineProperty(Error.prototype, 'toJSON', {
+      value: function () {
+          var alt = {}
+
+          Object.getOwnPropertyNames(this).forEach(key => {
+              alt[key] = this[key]
+          }, this)
+
+          return alt
+      },
+      configurable: true,
+      writable: true
+    })
+  }
+}
+
 module.exports.start = function (server, container) {
+  // general init
+  init()  
   // look for all controllers and init the routes over the server  
   initControllers(server)
   // bind all types on the container of each layer
