@@ -18,4 +18,12 @@ module.exports = class BaseRepository {
     save(obj) {
         return this.query.create(obj)
     }
+
+    update(obj) {
+        return this.query.update(obj, { where: { id: obj.id }})
+    }
+
+    delete(id) {
+        return this.query.destroy({ where: { id } })
+    }
 }

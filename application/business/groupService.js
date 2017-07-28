@@ -11,8 +11,8 @@ module.exports = class GroupService {
         return this.groupRepository.getAll()
     }
 
-    getByParent(parentId) {
-        return null;
+    getByParent(id) {
+        return this.groupRepository.getByParent(id)
     }
 
     get(id) {
@@ -24,8 +24,21 @@ module.exports = class GroupService {
             if (!this.isValid())
                 throw new BusinessError('Group', this.validation)
 
-            return this.groupRepository.save(group);
+            return this.groupRepository.save(group)
         });
+    }
+
+    update(group) {
+        return this.validate(group).then(() => {
+            if (!this.isValid())
+                throw new BusinessError('Group', this.validation)
+
+            return this.groupRepository.update(group)
+        });
+    }
+
+    delete(id) {
+        return this.groupRepository.delete(id)
     }
 
     validate(group) {

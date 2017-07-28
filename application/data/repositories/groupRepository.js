@@ -6,7 +6,20 @@ module.exports = class GroupRepository extends BaseRepository {
         super(db, 'Group')
     }
 
+    getByParent(id) {
+        return this.query.findAll({
+            where: {
+                groupId: id
+            }
+        })
+    }
+
     existsName(group) {
-        return this.query.count({ where: { 'name': { $eq: group.name }}  })
+        var expression = { where: { 'name': group.name }  }
+
+        if (group && group.id)
+            expression.where.id = { $ne: group.id }
+
+        return this.query.count(expression)
     }
 }
