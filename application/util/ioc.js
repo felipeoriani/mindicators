@@ -1,4 +1,8 @@
-var inversionOfControl = class InversionOfControl {
+const fs = require('fs')
+const path = require('path')
+const db = require('../data/db')
+
+class Container {
     constructor() {
         this.modules = {}
 
@@ -16,6 +20,7 @@ var inversionOfControl = class InversionOfControl {
             }
         });
     }
+
     get(name) {
         var objectType = this.modules[name]
 
@@ -24,9 +29,48 @@ var inversionOfControl = class InversionOfControl {
 
         return new objectType(this.paramParser)
     }
+
     bind(name, module) {
         this.modules[name] = module
-    }
+    }    
 }
 
-module.exports = inversionOfControl
+var register = function(container) {
+    console.log(__dirname)
+
+    var dataPath = path.resolve(`${__dirname}/../data/repositories`)
+    var servicePath = path.resolve(`${__dirname}/../business`)
+
+    var repositories = fs.readdirSync(dataPath)
+    var services = fs.readdirSync(servicePath)
+
+    repositories.forEach(item => {
+
+        var basename = path.basename(item, '.js');
+
+        var repositoryType = require(`../data/repositories/${basename}`)
+
+        container.bind(basename, repositoryType)
+    })
+
+    services.forEach(item => {
+
+        var basename = path.basename(item, '.js');
+
+        var serviceType = require(`../business/${basename}`)
+
+        container.bind(basename, serviceType)
+    })
+
+    container.bind('db', db)
+}
+
+if (!global.ioc) {
+    var ioc = new Container()
+
+    register(ioc)
+
+    global.ioc = ioc
+}
+
+module.exports = global.ioc

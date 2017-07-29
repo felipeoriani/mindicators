@@ -17,32 +17,6 @@ var initControllers = function (server) {
   })
 }
 
-var initContainer = function (container) {
-  
-  var dataPath = path.resolve(`${__dirname}/data/repositories`)
-  var servicePath = path.resolve(`${__dirname}/business`)
-  
-  var repositories = fs.readdirSync(dataPath)
-  var services = fs.readdirSync(servicePath)
-
-  repositories.forEach(item => {
-
-    var basename = path.basename(item, '.js');
-
-    var repositoryType = require(`./data/repositories/${basename}`)
-
-    container.bind(basename, repositoryType)
-  })
-
-  services.forEach(item => {
-
-    var basename = path.basename(item, '.js');
-
-    var serviceType = require(`./business/${basename}`)
-
-    container.bind(basename, serviceType)
-  })
-}
 
 var init = function() {
 
@@ -64,11 +38,9 @@ var init = function() {
   }
 }
 
-module.exports.start = function (server, container) {
+module.exports.start = function (server) {
   // general init
   init()  
   // look for all controllers and init the routes over the server  
   initControllers(server)
-  // bind all types on the container of each layer
-  initContainer(container)
 }
