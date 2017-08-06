@@ -15,7 +15,7 @@ module.exports = function (sequelize, DataTypes) {
     },  
     type: {
       field: 'Type',
-      type: DataTypes.ENUM('N', 'C'), // N - Normal, 'C' -  Calculated
+      type: DataTypes.ENUM('N', 'C'), // N - Normal, C -  Calculated
       allowNull: false
     },
     periodicity: {
@@ -25,7 +25,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     groupId: {
       field: 'GroupId',
-      type: DataTypes.BIGINT.UNSIGNED,
+      type: DataTypes.BIGINT,
       allowNull: false,
       references: {
         model: sequelize.models.Group,

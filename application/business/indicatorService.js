@@ -44,16 +44,24 @@ module.exports = class IndicatorService {
                 this.validation.push({ field: 'all', error: 'The indicator information was not correctly provided.' })
             }
             else {
+                
+                var periodicities = ['D', 'W', 'M', 'Y'];                
+                var types = ['N', 'C'];
+
                 if (!indicator.name) {
                     this.validation.push({ field: 'name', error: 'The name field is required.' })                
                 }
 
                 if (!indicator.type) {
                     this.validation.push({ field: 'type', error: 'The type field is required.' })
-                }
-                
+                } else if (types.indexOf(indicator.type) === -1) {
+                    this.validation.push({ field: 'type', error: 'The type field is not valid.' })
+                }                
+
                 if (!indicator.periodicity) {
                     this.validation.push({ field: 'periodicity', error: 'The periodicity field is required.' })
+                } else if (periodicities.indexOf(indicator.periodicity) === -1) {
+                    this.validation.push({ field: 'periodicity', error: 'The periodicity field is not valid.' })
                 }
 
                 if (!indicator.groupId) {
