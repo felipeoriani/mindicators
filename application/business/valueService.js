@@ -48,7 +48,7 @@ module.exports = class ValueService {
                     this.validation.push({ field: 'date', error: 'The date field is required.' })                
                 }
 
-                if (!indicator.value) {
+                if (!value.value) {
                     this.validation.push({ field: 'value', error: 'The value field is required.' })
                 }                
             }

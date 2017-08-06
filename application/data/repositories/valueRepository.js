@@ -11,7 +11,7 @@ module.exports = class ValueRepository extends BaseRepository {
             where: {
                 indicatorId: id
             },
-            order: ['date', 'ASC']
+            order: ['date']
         })
     }
 }

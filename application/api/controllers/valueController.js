@@ -21,7 +21,7 @@ router.get('/indicator/:id', (req, res) => {
 
     var valueService = ioc.get('valueService')
     
-    valueService.getByGroup(req.params.id)
+    valueService.getByIndicator(req.params.id)
                     .then(values => {
                         res.send(values)
                     })

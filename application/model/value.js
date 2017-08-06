@@ -22,7 +22,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     indicatorId: {
       field: 'IndicatorId',
-      type: DataTypes.BIGINT.UNSIGNED,
+      type: DataTypes.BIGINT,
       allowNull: false,
       references: {
         model: sequelize.models.Indicator,
