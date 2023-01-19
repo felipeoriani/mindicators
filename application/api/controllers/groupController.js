@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
     
     groupService.getAll()
                 .then(groups => {
-                    throw new Error('unexpected error!!!!')
                     res.send(groups)
                 })
                 .catch(err => {
