@@ -10,10 +10,10 @@ First install `node`. It was built on a lagacy version but it's still working wi
 If you don't have a SQL Server instance running, you can easly get it as a docker container by running the following statement:
 
 ```
- docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=P4ssw00rd!" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+ docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=***********" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
 ```
 
-You can change the `MSSQL_SA_PASSWORD` for a password of yuour choice. Once you run this, we have the `sa` user and the password defined. Go to the `~/data/db.js` file change the data access information on the sequelize setup at line 6 (I know it could be at a config file).
+You can change the `MSSQL_SA_PASSWORD` for a password of yuour choice (using lowercase, uppercase, numbers and special chars). Once you run this, we have the `sa` user and the password defined. Go to the `~/data/db.js` file change the data access information on the sequelize setup at line 6 (I know it could be at a config file).
 
 Once you have it, go to the console and run:
 
